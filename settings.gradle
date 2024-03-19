@@ -1,0 +1,5 @@
+rootProject.name = 'spring-poc'
+include 'com.custom.loginpage'
+include 'com.example.oauth'
+include 'com.example.oauth_v2'
+
