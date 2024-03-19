@@ -20,8 +20,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     /**
      * authenticationManager bean 생성 하여 셋팅 안할시 grant_type : password 지원 안함
-     * @return
-     * @throws Exception
      */
     @Bean
     @Override
