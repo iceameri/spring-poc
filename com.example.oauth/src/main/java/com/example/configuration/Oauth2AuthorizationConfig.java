@@ -1,7 +1,7 @@
 package com.example.configuration;
 
 import com.example.service.UserDetailService;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -10,12 +10,13 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 
-@RequiredArgsConstructor
 @EnableAuthorizationServer
 @Configuration
 public class Oauth2AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
-    private final UserDetailService userDetailService;
-    private final AuthenticationManager authenticationManager;
+    @Autowired
+    private UserDetailService userDetailService;
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
