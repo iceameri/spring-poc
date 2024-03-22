@@ -20,7 +20,7 @@ public class Oauth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        super.configure(security);
+        security.checkTokenAccess("permitAll()");
     }
 
     // client 설정

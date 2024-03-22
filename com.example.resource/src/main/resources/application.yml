@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/testmysql
+    username: root
+    password: 1234
+  jpa: # DB 쿼리 작성 없이 코드로 쉽게 데이터 처리를 위함.
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    open-in-view: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        default_batch_fetch_size: 1000
+  main:
+    allow-bean-definition-overriding: true # userDetailService 기존 스프링 제공 함수 안쓰고 정의 함수로 바꾸기 위한 설정
+  security:
+    oauth2:
+      client-id: resource-client
+      client-secret: 1234
+      token-info-uri: http://localhost:9000/oauth/check_token
+server:
+  port: 7071 # 사용 포트
+
+logging:
+  level:
+    org.springframework.web: INFO
+    org.springframework.security: INFO
+    org.springframework.security.oauth2: INFO
