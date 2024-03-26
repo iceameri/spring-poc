@@ -3,4 +3,5 @@ include 'com.custom.loginpage'
 include 'com.example.oauth'
 include 'com.example.oauth_v2'
 include 'com.example.resource'
+include 'com.example.oauth_v3'
 
