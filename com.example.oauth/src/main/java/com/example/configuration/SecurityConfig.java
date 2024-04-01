@@ -1,5 +1,6 @@
 package com.example.configuration;
 
+import com.example.service.UserDetailService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -7,7 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-@EnableWebSecurity // 웹보안 활성화
+@EnableWebSecurity
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
@@ -18,12 +19,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic(); // http 통신으로 basic auth를 사용 할 수 있다. (ex: Authorization: Basic bzFbdGfmZrptWY30YQ==)
     }
 
-    /**
-     * authenticationManager bean 생성 하여 셋팅 안할시 grant_type : password 지원 안함
-     */
     @Bean
     @Override
     protected AuthenticationManager authenticationManager() throws Exception {
-        return super.authenticationManager();
+        return super.authenticationManager(); // authenticationManager bean 생성 하여 셋팅 안할시 grant_type : password 지원 안함
+    }
+
+    @Bean
+    public UserDetailService userDetailService(){
+        return new UserDetailService();
     }
 }

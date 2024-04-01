@@ -28,4 +28,3 @@ public class Oauth2ResourceConfig extends ResourceServerConfigurerAdapter {
         resources.tokenServices(remoteTokenService);
     }
 }
-
