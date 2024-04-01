@@ -1,7 +1,8 @@
 package com.example.configuration;
 
-import com.example.service.UserDetailService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.service.CustomUserDetailsService;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -10,17 +11,19 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 
+@Getter
+@RequiredArgsConstructor
 @EnableAuthorizationServer
 @Configuration
 public class Oauth2AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
-    @Autowired
-    private UserDetailService userDetailService;
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private final CustomUserDetailsService customUserDetailsService;
+    private final AuthenticationManager authenticationManager;
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        security.checkTokenAccess("permitAll()");
+        security
+                .checkTokenAccess("permitAll()") // /oauth/check_token 호출 가능해짐
+        ;
     }
 
     // client 설정
@@ -41,6 +44,6 @@ public class Oauth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.authenticationManager(authenticationManager) // grant_type password 를 사용하기 위함 (manager 지정 안할시 password type 으로 토큰 발행시 Unsupported grant type: password 오류 발생)
-                .userDetailsService(userDetailService); // refresh token 발행시 유저 정보 검사 하는데 사용하는 서비스 설정
+                .userDetailsService(customUserDetailsService); // refresh token 발행시 유저 정보 검사 하는데 사용하는 서비스 설정
     }
 }

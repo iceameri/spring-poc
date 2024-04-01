@@ -4,11 +4,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class OAuthController {
-    private String clientId = "clintId";
-    private String secretKey;
-    //    @Value("${oauth.redirectUri}")
-    private String redirectUri = "http://localhost:7070/callback";
+//    http://localhost:7070/oauth/authorize?response_type=code&client_id=clientId&redirect_uri=http://localhost:7070/callback&scope=read
 
+//    private String clientId = "clientId";
+//    private String secretKey;
+//    //    @Value("${oauth.redirectUri}")
+//    private String redirectUri = "http://localhost:7070/callback";
 
     // 클라이언트가 구현해야하는 코드 - 발급 받은 코드로 토큰 발행
 //    @GetMapping("/callback")

@@ -1,6 +1,7 @@
 package com.example.dto;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,7 +13,8 @@ import javax.persistence.Id;
 import java.util.Arrays;
 import java.util.Collection;
 
-@Data
+@Getter
+@RequiredArgsConstructor
 @Entity
 public class User implements UserDetails {
     @Id

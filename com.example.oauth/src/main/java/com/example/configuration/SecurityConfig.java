@@ -1,6 +1,7 @@
 package com.example.configuration;
 
-import com.example.service.UserDetailService;
+import com.example.service.CustomUserDetailsService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -26,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public UserDetailService userDetailService(){
-        return new UserDetailService();
+    public CustomUserDetailsService userDetailService(){
+        return new CustomUserDetailsService();
     }
 }

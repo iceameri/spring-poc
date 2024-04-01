@@ -1,3 +1,9 @@
+server:
+  port: 7070 # 사용 포트
+  tomcat:
+    accessors:
+      enabled: true # access 로그 추가
+
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -16,5 +22,3 @@ spring:
         default_batch_fetch_size: 1000
   main:
     allow-bean-definition-overriding: true # userDetailService 기존 스프링 제공 함수 안쓰고 정의 함수로 바꾸기 위한 설정
-server:
-  port: 7070 # 사용 포트
