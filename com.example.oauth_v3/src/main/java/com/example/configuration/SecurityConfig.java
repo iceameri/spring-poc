@@ -1,6 +1,6 @@
 package com.example.configuration;
 
-import com.example.service.UserDetailService;
+import com.example.service.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public UserDetailService userDetailService(){
-        return new UserDetailService();
+    public CustomUserDetailsService userDetailService(){
+        return new CustomUserDetailsService();
     }
 }

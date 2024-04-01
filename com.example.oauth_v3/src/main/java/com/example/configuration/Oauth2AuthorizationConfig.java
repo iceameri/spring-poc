@@ -1,6 +1,6 @@
 package com.example.configuration;
 
-import com.example.service.UserDetailService;
+import com.example.service.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,7 +23,7 @@ import javax.sql.DataSource;
 @EnableAuthorizationServer
 @Configuration
 public class Oauth2AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
-    private final UserDetailService userDetailService;
+    private final CustomUserDetailsService customUserDetailsService;
     private final AuthenticationManager authenticationManager;
     private final DataSource dataSource;
     @Bean
@@ -51,7 +51,7 @@ public class Oauth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         endpoints
                 .authenticationManager(authenticationManager)
-                .userDetailsService(userDetailService) // refresh token 발행시 유저 정보 검사 하는데 사용하는 서비스 설정
+                .userDetailsService(customUserDetailsService) // refresh token 발행시 유저 정보 검사 하는데 사용하는 서비스 설정
                 .tokenStore(tokenStore()) // framework가 자동으로 token 저장
                 .approvalStore(approvalStore())
                 .authorizationCodeServices(jdbcAuthorizationCodeServices())
