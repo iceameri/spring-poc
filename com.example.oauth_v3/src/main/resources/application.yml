@@ -22,3 +22,7 @@ spring:
         default_batch_fetch_size: 1000
   main:
     allow-bean-definition-overriding: true # userDetailService 기존 스프링 제공 함수 안쓰고 정의 함수로 바꾸기 위한 설정
+
+logging:
+      level:
+        org.springframework.security: DEBUG
