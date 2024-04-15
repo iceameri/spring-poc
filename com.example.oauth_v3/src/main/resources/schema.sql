@@ -67,3 +67,15 @@ CREATE TABLE ClientDetails (
 INSERT INTO testmysql.oauth_client_details (client_id, resource_ids, client_secret, scope, authorized_grant_types, web_server_redirect_uri, authorities, access_token_validity, refresh_token_validity, additional_information, autoapprove)
 VALUES ('clientId', null, '{noop}secretKey', 'read,write', 'authorization_code,password,refresh_token,client_credentials', 'http://localhost:7070/callback', 'GENERAL', 60, 3600, null, 'true');
 
+INSERT INTO oauth_client_details (client_id, resource_ids, client_secret, scope, authorized_grant_types, web_server_redirect_uri, authorities, access_token_validity, refresh_token_validity, additional_information, autoapprove
+) VALUES ( 'login-client',
+             NULL, -- resource_ids
+             '{noop}openid-connect', -- client_secret (noop은 평문)
+             'openid,profile', -- scope
+             'authorization_code', -- authorized_grant_types
+             'http://127.0.0.1:7070/login/oauth2/code/login-client', -- web_server_redirect_uri
+             NULL, -- authorities
+             3600, -- access_token_validity (초 단위)
+             3600, -- refresh_token_validity (초 단위)
+             NULL, -- additional_information NULL -- autoapprove
+         );
