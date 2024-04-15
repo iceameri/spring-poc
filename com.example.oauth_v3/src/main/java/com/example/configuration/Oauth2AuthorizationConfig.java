@@ -26,6 +26,7 @@ public class Oauth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
     private final CustomUserDetailsService customUserDetailsService;
     private final AuthenticationManager authenticationManager;
     private final DataSource dataSource;
+
     @Bean
     public TokenStore tokenStore() { return new JdbcTokenStore(dataSource); }
     @Bean
@@ -39,7 +40,9 @@ public class Oauth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) {
-        security.checkTokenAccess("permitAll()"); // 토큰유효성(/token/check_token) 접근을 위해 설정
+        security
+                .checkTokenAccess("permitAll()") // 토큰유효성(/token/check_token) 접근을 위해 설정
+        ;
     }
 
     @Override
