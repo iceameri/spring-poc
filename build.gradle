@@ -1,3 +1,11 @@
+buildscript {
+    apply from: 'versions.gradle'
+
+    repositories {
+        mavenCentral()
+    }
+}
+
 plugins {
     id 'org.springframework.boot' version '2.6.6'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
@@ -30,10 +38,6 @@ allprojects {
         compileOnly {
             extendsFrom configurations.annotationProcessor
         }
-    }
-
-    repositories {
-        mavenCentral()
     }
 }
 

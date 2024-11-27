@@ -1,0 +1,43 @@
+server:
+  port: 7072 # 사용 포트
+  tomcat:
+    access-log:
+      enabled: true # access 로그 추가
+
+security:
+  oauth2:
+    client:
+      registration:
+        oauth-client:
+          client-id: clientId
+          client-secret: secretKey
+          client-authentication-method: basic
+          authorization-grant-type: authorization_code,refresh_token
+          redirect-uri: http://localhost:7072/callback
+          scope: read,write
+      provider:
+        oauth-client:
+          authorization-uri: http://localhost:7070/oauth/authorize
+          token-uri: http://localhost:7070/oauth/token
+          user-info-uri: http://localhost:7070/oauth/userinfo
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/testmysql
+    username: root
+    password: 1234
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    open-in-view: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        default_batch_fetch_size: 1000
+
+logging:
+  level:
+    org.springframework.security: DEBUG

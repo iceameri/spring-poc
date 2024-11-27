@@ -1,15 +1,12 @@
-package com.example.service;
+package com.example;
 
-import com.example.repo.UserRepository;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import com.example.domain.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-@Getter
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
     private final UserRepository userRepository;

@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+group 'com.example'
+version 'unspecified'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.security.oauth:spring-security-oauth2:2.3.8.RELEASE' // spring oauth 2.0
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    implementation 'mysql:mysql-connector-java:8.0.29'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' // 타임리프로 쉽게 웹 화면 구성을 위함
+    implementation 'org.json:json:20210307'
+    implementation 'com.konghq:unirest-java:3.7.02' // http 통신을 쉽게 하기 위함
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}

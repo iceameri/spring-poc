@@ -22,7 +22,7 @@ public class TestController {
         // 로그인 처리 (여기서는 간단히 출력)
         System.out.println("username: " + username);
 
-        // 로그인 처리 (여기서는 간단히 username이 "admin"이고 password가 "password"인 경우를 성공으로 가정)
+        // 로그인 처리 (여기서는 간단히 username 이 "admin"이고 password 가 "password"인 경우를 성공으로 가정)
         if ("user".equals(username) && "1234".equals(password)) {
             // 세션에 사용자 이름 저장
             HttpSession session = request.getSession();
@@ -35,5 +35,4 @@ public class TestController {
             return "redirect:/login?error";
         }
     }
-
 }

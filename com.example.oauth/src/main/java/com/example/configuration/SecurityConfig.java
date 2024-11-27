@@ -1,6 +1,8 @@
 package com.example.configuration;
 
+import com.example.repo.UserRepository;
 import com.example.service.CustomUserDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -11,13 +13,20 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    private final UserRepository userRepository;
+
+    @Autowired
+    public SecurityConfig(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable() // csrf 공격을 막기 위해 state 값을 전달 받지 않는다
                 .formLogin() // 기본 제공하는 로그인 화면 사용
                 .and()
-                .httpBasic(); // http 통신으로 basic auth를 사용 할 수 있다. (ex: Authorization: Basic bzFbdGfmZrptWY30YQ==)
+                .httpBasic(); // http 통신으로 basic auth 를 사용 할 수 있다. (ex: Authorization: Basic bzFbdGfmZrptWY30YQ==)
     }
 
     @Bean
@@ -28,6 +37,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public CustomUserDetailsService userDetailService(){
-        return new CustomUserDetailsService();
+        return new CustomUserDetailsService(userRepository);
     }
 }
